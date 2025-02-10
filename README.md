@@ -1,6 +1,6 @@
 # Social-Post-App
 
-Welcome to **Social-Post-App**, a social media posting platform built using **Node.js, Express, MongoDB, Tailwind CSS, EJS, and JWT**. This application allows users to create and share posts with a simple and intuitive interface. ✨📝
+A social media posting platform built using **Node.js, Express, MongoDB, Tailwind CSS, EJS, and JWT**. 
 
 Social-Post-App provides a seamless experience for users to create, update, and delete posts while ensuring secure authentication. 🔐🚀
 
@@ -20,7 +20,10 @@ Social-Post-App provides a seamless experience for users to create, update, and 
 
 - Users can **update their profile**.
 
+***
+
 ## Tech Stack 🛠️
+
 
 ### Frontend:
 
@@ -34,6 +37,7 @@ Social-Post-App provides a seamless experience for users to create, update, and 
 - **JWT**: Token-based stateless authentication.
 - **Mongoose**: For database schema and object modeling.
 
+***
 ## Installation 🚀
 
 ### Clone the repository:
@@ -46,15 +50,6 @@ git clone https://github.com/yourusername/Social-Post-App.git
 cd Social-Post-App
 ```
 #### Install backend dependencies
-```sh
-npm install
-```
-### Navigate to the project folder
-```sh
-cd Social-Post-App
-```
-
-### Install backend dependencies
 ```sh
 npm install
 ```
