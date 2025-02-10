@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full w-full">
+
+    <%- include('partials/nav') %>
+
+        <div class=" h-[90vh] flex items-center justify-center p-7">
+            <div class="bg-zinc-800 text-white p-8 rounded-lg shadow-lg w-full md:max-w-md">
+
+                <h2 class="text-2xl font-bold text-center text-white mb-6">Login to Your Account</h2>
+
+                <!-- Login Form -->
+                <form action="/user/login" method="post" class="space-y-5">
+
+                    <!-- Email Input -->
+                    <div>
+                        <input type="email" name="email" placeholder="Email" required
+                            class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="relative">
+                        <input type="password" name="password" placeholder="Password" id="passwordField" required
+                            class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="button" onclick="togglePassword()"
+                            class="absolute top-3 right-4 text-gray-400 hover:text-gray-200">
+                            👁
+                        </button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <input type="submit" value="Login"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-lg transition duration-300 cursor-pointer">
+                    </div>
+                </form>
+
+                <p class="text-gray-400 text-sm text-center mt-4">
+                    Don't have an account? <a href="/user/register" class="text-blue-400 hover:underline">Register</a>
+                </p>
+
+            </div>
+        </div>
+
+        <!-- JavaScript for Password Toggle -->
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("passwordField");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+    </script>
+
+</body>
+
+</html>
