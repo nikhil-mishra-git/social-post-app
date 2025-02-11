@@ -19,21 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 // Main Route
-app.get('/', async (req, res) => {
-
-    try {
-        const posts = await postModel
-            .find()
-            .populate("user", "username")
-            .sort({ createdAt: -1 })
-            .exec();
-
-        res.render("index", { posts, title: "Home" });
-    } catch (error) {
-        console.error("Error fetching posts:", error);
-        res.status(500).render("register", { error: "Internal Server Error" });
-    }
-});
+app.get('/', postRoute)
 
 // User Routes
 app.use('/user', userRoute);

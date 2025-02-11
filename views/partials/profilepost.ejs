@@ -1,0 +1,51 @@
+<div class="postcontainer space-y-5">
+    <% if (user.posts.length > 0) { %>
+        <% user.posts.reverse().forEach((post) => { %>
+
+            <!-- Post Card -->
+            <div class="bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-700">
+                <div class="flex justify-between items-center">
+                    <span class="text-blue-400 font-semibold">@<%= user.username %></span>
+                    <span class="text-xs text-zinc-500">
+                        <%= post.updatedAt ? new Date(post.createdAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A' %>
+                    </span>
+                </div>
+
+                <p class="text-zinc-300 mt-4 leading-relaxed">
+                    <%= post.content.trim() %>
+                </p>
+
+                <!-- Post Actions -->
+                <div class="flex justify-between items-center text-zinc-400 text-sm mt-6">
+                    
+                    <!-- Like/Unlike -->
+                    <a href="/posts/likes/<%= post._id %>" 
+                        class="flex items-center gap-1 transition duration-200
+                            <%= post.likes.includes(user._id) ? 'text-blue-400' : 'text-zinc-400 hover:text-blue-400' %>">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span class="ml-1"><%= post.likes.length %></span>
+                    </a>
+
+                    <!-- Edit -->
+                    <a href="/posts/edit/<%= post._id %>" 
+                        class="text-yellow-400 hover:text-yellow-300 transition duration-200">
+                        ✏ Edit
+                    </a>
+
+                    <!-- Delete Post -->
+                    <form action="/posts/delete/<%= post._id %>" method="POST">
+                        <button type="submit" 
+                            class="text-red-500 hover:text-red-400 transition duration-200">
+                            🗑 Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        <% }) %>
+    <% } else { %>
+        <div class="text-lg text-zinc-500 font-bold text-center mt-20">No Posts Yet</div>
+    <% } %>
+</div>

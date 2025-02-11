@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/stylesheet/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-zinc-900 text-white w-full flex flex-col items-center">
+
+    <!-- Navbar -->
+    <%- include('partials/nav') %>
+
+    <!-- Main Content -->
+    <div class="w-full max-w-2xl mt-16 p-6 md:p-8 bg-zinc-800 border border-zinc-700 shadow-lg rounded-2xl">
+        
+        <!-- Profile Greeting -->
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-bold text-white">Hello, <span class="text-blue-400"><%= post.user.username || 'Guest' %></span> 👋</h2>
+        </div>
+
+        <!-- Form -->
+        <form action="/posts/update/<%= post._id %>" method="post" class="space-y-5">
+            
+            <!-- Textarea -->
+            <label class="block text-lg font-medium text-zinc-300">Update your post</label>
+            <textarea name="content" rows="6" 
+                class="w-full p-4 rounded-lg bg-zinc-700 text-white border border-zinc-600 outline-none resize-none shadow-md"
+                placeholder="Write your updated thoughts..."><%= post.content %></textarea>
+
+            <!-- Buttons -->
+            <div class="flex gap-4">
+                <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md">
+                    Save Changes
+                </button>
+                <a href="/user/profile"
+                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>
