@@ -7,51 +7,61 @@ Social-Post-App provides a seamless experience for users to create, update, and 
 ## Features
 
 ### 1. User Authentication 🔑
-
 - Secure **Signup/Login** using **JWT-based authentication**.
 - **Username/Password** based authentication.
 
 ### 2. Post Management 📝
-
 - Users can **Create, Read, Update, and Delete** posts.
 - Each authenticated user has a **dashboard** to manage their posts.
+- Users can **edit their posts** and update content easily.
+- Users can **like** posts.
+- Displays **real-time like count**.
 
 ### 3. User Profile 👤
-
 - Users can **update their profile**.
+- Personalized greeting for logged-in users.
+
+### 4. Responsive UI 🎨
+- Modern and **responsive design** built with **Tailwind CSS**.
+- Improved **post layout and styling**.
+- Enhanced **navigation bar**.
 
 ***
 
 ## Tech Stack 🛠️
 
-
 ### Frontend:
-
 - **EJS**: For rendering dynamic pages.
 - **Tailwind CSS**: For beautiful and responsive styling.
 
 ### Backend:
-
 - **Node.js with Express.js**: For building the server-side application.
 - **MongoDB**: For database storage.
 - **JWT**: Token-based stateless authentication.
 - **Mongoose**: For database schema and object modeling.
 
 ***
+
 ## Installation 🚀
 
 ### Clone the repository:
-
 ```sh
 git clone https://github.com/yourusername/Social-Post-App.git
 ```
+
 ### Navigate to the project folder
 ```sh
 cd Social-Post-App
 ```
-#### Install backend dependencies
+
+### Install backend dependencies
 ```sh
 npm install
+```
+
+### Run the application
+```sh
+node server.js
 ```
 
 ## Contributing 🤝
