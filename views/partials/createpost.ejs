@@ -1,26 +1,19 @@
-
 <div class="bg-zinc-800 p-6 rounded-lg shadow-md border border-zinc-700">
     <h2 class="text-xl text-zinc-300 font-semibold mb-3">Create a Post 📝</h2>
 
-    <form action="/posts/create" method="post" class="space-y-3">
+    <form action="/posts/create" method="post" enctype="multipart/form-data" class="space-y-3">
+
+        <!-- Content -->
         <textarea name="content" rows="7" placeholder="Write your thought..."
             class="w-full p-3 rounded-lg bg-zinc-700 text-white border border-zinc-600 outline-none resize-none"></textarea>
 
-        <!-- <label for="uploadFile1"
-            class="flex justify-center bg-zinc-700 hover:bg-zinc-600 text-white text-base px-5 py-3 outline-none rounded cursor-pointer w-full ">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 mr-2 fill-white inline"
-                viewBox="0 0 32 32">
-                <path
-                    d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                    data-original="#000000" />
-                <path
-                    d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                    data-original="#000000" />
-            </svg>
-            Upload
-            <input type="file" id='uploadFile1' class="hidden" />
-        </label> -->
-        
+        <!-- Image Upload -->
+        <label for="uploadFile" id="uploadLabel" 
+            class="block bg-zinc-700 text-zinc-300 text-center text-sm px-4 py-2 rounded-md border border-zinc-600 cursor-pointer hover:bg-zinc-600 transition">
+            📎 Upload Image
+        </label>
+        <input name="postImage" type="file" id="uploadFile" class="hidden" />
+
         <button type="submit"
             class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-lg transition duration-300">
             Create Post
@@ -28,3 +21,12 @@
     </form>
 
 </div>
+
+ <!-- Show Name of Slected Image -->
+
+ <script>
+    document.getElementById('uploadFile').addEventListener('change', function () {
+        const fileName = this.files.length > 0 ? this.files[0].name : "📎 Upload Image";
+        document.getElementById('uploadLabel').textContent = fileName;
+    });
+</script>

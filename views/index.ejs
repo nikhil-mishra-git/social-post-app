@@ -9,47 +9,67 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="h-full w-full bg-zinc-900 text-white">
-    
+<body class="bg-zinc-900 text-white min-h-screen">
+
     <%- include('partials/nav') %>
-    
-    <div class="w-full py-8 px-7 flex gap-6 flex-wrap justify-center">
+
+    <div class="container mx-auto py-8 px-4 flex flex-wrap justify-center gap-6">
         <% if (posts.length > 0) { %>
             <% posts.forEach(post => { %>
-                <div class="w-full md:w-[80vw] bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-700">
-                    
+                <div class="w-full md:w-[60vw] bg-zinc-800 p-6 rounded-xl shadow-lg border border-zinc-700">
+
                     <!-- Post Header -->
                     <div class="flex justify-between items-center">
-                        <span class="text-blue-400 font-semibold">
-                            @<%= post.user.username %>
+                        <span class="text-blue-400 font-semibold">@<%= post.user.username %></span>
+                        <span class="text-xs text-zinc-500">
+                            <%= new Date(post.updatedAt).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) %>
                         </span>
-                        <div class="text-xs text-zinc-500 flex items-center gap-4">
-                            <span>
-                                <%= new Date(post.createdAt).toLocaleDateString('en-IN', {
-                                    year: 'numeric', month: 'long', day: 'numeric' }) %>
-                            </span>
-                            <span>
-                                <%= new Date(post.createdAt).toLocaleTimeString('en-IN', {
-                                    hour: '2-digit', minute: '2-digit', hour12: true }) %>
-                            </span>
-                        </div>
                     </div>
-                    
+
                     <!-- Post Content -->
-                    <p class="text-zinc-300 mt-4 text-lg leading-relaxed">
+                    <p class="text-zinc-300 mt-4 text-sm md:text-lg leading-relaxed">
                         <%= post.content %>
                     </p>
-                    
-                    <!-- Like Button -->
-                    <a href="/posts/homelikes/<%= post._id %>" 
-                        class="flex items-center gap-1 mt-5 text-sm transition duration-200
-                            <%= userId && post.likes.includes(userId) ? 'text-blue-400' : 'text-zinc-400 hover:text-blue-400' %>">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </svg>
-                        <span class="ml-1"><%= post.likes.length %></span>
-                    </a>                
-                    
+
+                    <!-- Post Image -->
+                    <% if (post.image) { %>
+                        <div class="mt-4">
+                            <img src="/uploads/postImages/<%= post.image %>" alt="Post Image" class="rounded-lg w-full max-h-80 object-contain">
+                        </div>
+                    <% } %>
+
+                    <!-- Post Actions (Like & Download) -->
+                    <div class="flex justify-between items-center text-sm text-zinc-400 mt-6 border-t border-zinc-700 pt-4">
+                        
+                        <!-- Like Button -->
+                        <a href="/posts/homelikes/<%= post._id %>" 
+                           class="flex items-center gap-1 transition duration-200 
+                           <%= userId && post.likes.includes(userId) ? 'text-blue-400' : 'hover:text-blue-400' %>">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                            <span><%= post.likes.length %></span>
+                        </a>
+
+                        <!-- Download Button -->
+                        <% if (post.image) { %>
+                            <a href="/posts/download/<%= post.image %>" 
+                               class="flex items-center gap-1 transition duration-200 hover:text-blue-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path d="M5 20h14v-2H5v2zm7-18a1 1 0 0 1 1 1v8.59l2.29-2.3a1 1 0 1 1 1.42 1.42l-4 4a1 1 0 0 1-1.42 0l-4-4a1 1 0 1 1 1.42-1.42L11 11.59V3a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <span>Download</span>
+                            </a>
+                        <% } else { %>
+                            <button disabled class="flex items-center gap-1 text-zinc-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path d="M5 20h14v-2H5v2zm7-18a1 1 0 0 1 1 1v8.59l2.29-2.3a1 1 0 1 1 1.42 1.42l-4 4a1 1 0 0 1-1.42 0l-4-4a1 1 0 1 1 1.42-1.42L11 11.59V3a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <span>Download</span>
+                            </button>
+                        <% } %>
+
+                    </div>
                 </div>
             <% }) %>
         <% } else { %>
@@ -58,7 +78,6 @@
             </div>
         <% } %>
     </div>
-    
-</body>
 
+</body>
 </html>

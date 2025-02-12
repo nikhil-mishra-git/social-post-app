@@ -4,7 +4,6 @@ const path = require('path');
 const userRoute = require("./router/user.route");
 const postRoute = require("./router/post.route");
 const cookieParser = require('cookie-parser');
-const postModel = require('./models/post.model');
 
 const PORT = 4500;
 const app = express();
@@ -15,11 +14,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // Set EJS as View Engine
 app.set('view engine', 'ejs');
 
 // Main Route
-app.get('/', postRoute)
+app.get('/', postRoute);
 
 // User Routes
 app.use('/user', userRoute);
