@@ -4,8 +4,9 @@ const path = require('path');
 const userRoute = require("./router/user.route");
 const postRoute = require("./router/post.route");
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
-const PORT = 4500;
+const PORT = process.env.PORT || 3500;
 const app = express();
 
 // Middleware

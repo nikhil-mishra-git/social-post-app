@@ -1,5 +1,6 @@
+require('dotenv').config()
 const jwt = require("jsonwebtoken");
-const JWTSECRET = "IAMTHEBOSS"
+const JWTSECRET = process.env.JWTSECRET;
 
 
 function verifyToken(req, res, next) {
@@ -8,7 +9,6 @@ function verifyToken(req, res, next) {
         if (!token) {
             return res.redirect("/user/login");
         }
-
         const decodedToken = jwt.verify(token, JWTSECRET);
         req.verifiedUser = decodedToken;
         next();

@@ -18,7 +18,7 @@ router.post('/register', async (req, res) => {
 
         // Check if user already exists
         if (await userModel.findOne({ email })) {
-            return res.status(400).render("register", { error: "User already exists!" });
+            return res.status(400).render("register", { error: "User already exists!",title:"Profile" });
         }
 
         // Hash password & save user
@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
 
     } catch (error) {
         console.error("Login Error:", error);
-        return res.status(500).render("login", { error: "Something went wrong. Please try again!"});
+        return res.status(500).render("login", { error: "Something went wrong. Please try again!",title:"Login"});
     }
 });
 
